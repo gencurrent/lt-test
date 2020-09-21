@@ -1,0 +1,25 @@
+version: "3.1"
+services:
+  lt-test-backend:
+    build:
+      context: ./lt-test-backend
+      dockerfile: ./Dockerfile
+    environment:
+      DB_USER: lt-test-user
+      DB_PASSWORD: lt-test-password
+      DB_NAME: lt-test
+      DB_HOST: database
+      DB_PORT: 5432
+      GOOGLE_MAPS_API_KEY: AIzaSyBcN6ku7AfeYwZX9qTX1ErTNG9PlYZhfGU
+    ports:
+      - 8000:8000
+  database:
+    image: postgres:11.9
+    restart: always
+    environment:
+      POSTGRES_DB: lt-test
+      POSTGRES_USER: lt-test-user
+      POSTGRES_PASSWORD: lt-test-password
+    ports:
+      - 5433:5432
+      
